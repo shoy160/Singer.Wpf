@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{651EC2E6-D65E-490A-97BF-52D18E4D75F0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Singer.Update</RootNamespace>
+    <AssemblyName>Singer.Update</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>update.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\ICCEmbedded\Checksums\Adler32.cs" />
+    <Compile Include="Core\ICCEmbedded\Checksums\CRC32.cs" />
+    <Compile Include="Core\ICCEmbedded\Checksums\IChecksum.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\FileSystemScanner.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\INameTransform.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\IScanFilter.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\NameFilter.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\PathFilter.cs" />
+    <Compile Include="Core\ICCEmbedded\Core\StreamUtils.cs" />
+    <Compile Include="Core\ICCEmbedded\Encryption\PkzipClassic.cs" />
+    <Compile Include="Core\ICCEmbedded\SharpZipBaseException.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Deflater.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\DeflaterConstants.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\DeflaterEngine.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\DeflaterHuffman.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\DeflaterPending.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Inflater.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\InflaterDynHeader.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\InflaterHuffmanTree.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\PendingBuffer.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Streams\DeflaterOutputStream.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Streams\InflaterInputStream.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Streams\OutputWindow.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\Compression\Streams\StreamManipulator.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\FastZip.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\IEntryFactory.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipConstants.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipEntry.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipEntryFactory.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipException.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipExtraData.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipFile.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipHelperStream.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipNameTransform.cs" />
+    <Compile Include="Core\ICCEmbedded\Zip\ZipOutputStream.cs" />
+    <Compile Include="Updater.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UI\DownFileProcess.xaml.cs">
+      <DependentUpon>DownFileProcess.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Theme\Base.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\DownFileProcess.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="update.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

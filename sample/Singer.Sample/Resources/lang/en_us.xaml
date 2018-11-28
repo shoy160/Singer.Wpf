@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="L-AppName">Sample</s:String>
+    <s:String x:Key="L-DataSynchronization">DataSynchronization</s:String>
+    <s:String x:Key="L-Online">Online</s:String>
+    <s:String x:Key="L-Switch">Switch</s:String>
+</ResourceDictionary>

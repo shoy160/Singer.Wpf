@@ -1,0 +1,57 @@
+﻿<k:KDialog x:Class="Singer.Client.Controls.KMessageBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:k="clr-namespace:Singer.Client.Controls" xmlns:cmd="clr-namespace:Singer.Client.Commands"
+           ResizeMode="NoResize"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="300" ShowHeader="False" 
+           Style="{StaticResource K-Dialog}" Background="White" k:AttachProperty.CornerRadius="6">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Row="0">
+            <Border Background="#FFF7F8FF" BorderThickness="0,0,0,1" BorderBrush="{StaticResource C-BorderBrush}" CornerRadius="6,6,0,0">
+                <DockPanel VerticalAlignment="Center">
+                    <TextBlock x:Name="TextTitle" Text="提示" FontSize="16" Foreground="{DynamicResource FontBrush}" Margin="20,6,0,0"></TextBlock>
+                    <WrapPanel HorizontalAlignment="Right">
+                        <!--<k:KButton ToolTip="{StaticResource L-WindowClose}" Command="{x:Static cmd:SystemCommands.CloseWindowCommand}" 
+                                   Style="{StaticResource Window-Btn}" Icon="&#xe602;" Margin="0,0,14,0" IconMargin="0,0,0,3" FontSize="26" Foreground="{StaticResource FontBrush}" 
+                                   HoverBackground="#FFC6C6CC"  k:AttachProperty.CornerRadius="4"></k:KButton>-->
+                        <k:KButton ToolTip="关闭" Height="34" Width="34" Margin="12,0" Command="{x:Static cmd:SystemCommands.CloseWindowCommand}">
+                            <k:KButton.Template>
+                                <ControlTemplate TargetType="k:KButton">
+                                    <Image x:Name="PART_Icon" Source="/Singer.Client;component/Resources/Images/dialog_close.png"></Image>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="PART_Icon" Property="Source" Value="/Singer.Client;component/Resources/Images/dialog_close_hover.png"></Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </k:KButton.Template>
+                        </k:KButton>
+                    </WrapPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1">
+            <WrapPanel x:Name="MessagePanel" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-20,0,0">
+                <TextBlock Style="{StaticResource K-Icon}" Text="&#xe663;" FontSize="32" Margin="15,15,5,0" x:Name="MessageIcon" Visibility="Visible"></TextBlock>
+                <TextBlock x:Name="TextMessage" Padding="10,20,0,0" FontSize="14" Foreground="{DynamicResource C-ForegroundBrush}" 
+                           TextWrapping="Wrap" Text="消息内容消息内容消息内容消息内容消息内容消息内容消息内容"></TextBlock>
+            </WrapPanel>
+            <WrapPanel x:Name="EditPanel" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-20,0,0">
+                <TextBox x:Name="EditText" FontSize="14" Foreground="{DynamicResource C-ForegroundBrush}" Width="500"
+                         Text="消息内容消息内容消息内容消息内容消息内容消息内容消息内容"></TextBox>
+            </WrapPanel>
+        </Grid>
+        <WrapPanel Grid.Row="2" x:Name="BtnControls" Height="80" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+            <!--<k:KButton Content="确认" FontSize="16" Width="156" Height="40" Style="{StaticResource Btn-Default}"></k:KButton>
+                <k:KButton Content="取消" FontSize="16" Width="156" Height="40" Style="{StaticResource K-Btn}" Margin="15,0,0,0"></k:KButton>-->
+        </WrapPanel>
+    </Grid>
+</k:KDialog>
+

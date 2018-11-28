@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="L-AppName">测试项目</s:String>
+    <s:String x:Key="L-Copyright">©2018 Shay</s:String>
+    <s:String x:Key="L-ServiceTelephone">客服电话：400-0000-000</s:String>
+</ResourceDictionary>

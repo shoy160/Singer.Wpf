@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{541D5466-B8BA-4EBA-B3D3-657C6C486611}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Singer.Sample</RootNamespace>
+    <AssemblyName>Singer.Sample</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppService\GlobalDataService.cs" />
+    <Compile Include="AppService\SqliteService.cs" />
+    <Compile Include="Commands\ClientCommands.cs" />
+    <Compile Include="Const.cs" />
+    <Compile Include="Dtos\ManifestDto.cs" />
+    <Compile Include="Dtos\MenuDto.cs" />
+    <Compile Include="Dtos\UserInfoDto.cs" />
+    <Compile Include="GlobalKeys.cs" />
+    <Compile Include="Helper\AutoCreateTableHelper.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\MachineCodeHelper.cs" />
+    <Compile Include="Helper\Print\VisualDocumentPaginator.cs" />
+    <Compile Include="Helper\RestHelper.cs" />
+    <Compile Include="ViewModels\VBase.cs" />
+    <Compile Include="ViewModels\VLogin.cs" />
+    <Compile Include="ViewModels\VMain.cs" />
+    <Compile Include="ViewModels\VSystemUpgrade.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\SystemUpgrade.xaml.cs">
+      <DependentUpon>SystemUpgrade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Resources\lang\en_us.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\lang\zh_cn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\LoginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\SystemUpgrade.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pages\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Singer.Client\Singer.Client.csproj">
+      <Project>{a34f141e-4bc2-4df9-b5f8-557be99de69f}</Project>
+      <Name>Singer.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Singer.Core\Singer.Core.csproj">
+      <Project>{bb66c0ef-42ae-439f-9ff6-e50ae1258ffb}</Project>
+      <Name>Singer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Singer.Update\Singer.Update.csproj">
+      <Project>{651ec2e6-d65e-490a-97bf-52d18e4d75f0}</Project>
+      <Name>Singer.Update</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contents\Config\application.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Contents\Icons\报名二维码.png" />
+    <Resource Include="Contents\Icons\时钟.png" />
+    <Resource Include="Contents\Icons\消息通知.png" />
+    <Resource Include="Contents\Icons\现场签到.png" />
+    <Resource Include="Contents\Icons\界面设计.png" />
+    <Resource Include="Contents\Icons\签到人员.png" />
+    <Resource Include="Contents\Icons\签到账号分配.png" />
+    <Resource Include="Contents\Icons\系统更新.png" />
+    <Resource Include="Contents\Images\1.png" />
+    <Resource Include="Contents\Images\2.png" />
+    <Resource Include="Contents\Images\21313-106.jpg" />
+    <Resource Include="Contents\Images\5555.png" />
+    <Resource Include="Contents\Images\account.png" />
+    <Resource Include="Contents\Images\add.png" />
+    <Resource Include="Contents\Images\loading.gif" />
+    <Resource Include="Contents\Images\loading1.gif" />
+    <Resource Include="Contents\Images\login_bg.png" />
+    <Resource Include="Contents\Images\login_close.png" />
+    <Resource Include="Contents\Images\login_close_hover.png" />
+    <Resource Include="Contents\Images\logo_1.png" />
+    <Resource Include="Contents\Images\notice.png" />
+    <Resource Include="Contents\Images\password.png" />
+    <Resource Include="Contents\Images\qrcode.png" />
+    <Resource Include="Contents\Images\right.png" />
+    <Resource Include="Contents\Images\search.png" />
+    <Resource Include="Contents\Images\time.png" />
+    <Resource Include="Contents\Images\timeicon.png" />
+    <Resource Include="Contents\Images\upload.png" />
+    <Resource Include="Contents\Images\zuixinbanben.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper">
+      <Version>1.50.2</Version>
+    </PackageReference>
+    <PackageReference Include="NPOI">
+      <Version>2.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite.Core">
+      <Version>1.0.109.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

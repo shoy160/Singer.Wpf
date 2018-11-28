@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="DgBorderColor">#FFF3F3F3</Color>
+    <Color x:Key="DgBgColor">#FFF7F8FF</Color>
+    <Color x:Key="DgSelectColor">#FFE3E3E3</Color>
+    <SolidColorBrush x:Key="DgBorderBrush" Color="{StaticResource DgBorderColor}"></SolidColorBrush>
+    <SolidColorBrush x:Key="DgBgBrush" Color="{StaticResource DgBgColor}"></SolidColorBrush>
+    <SolidColorBrush x:Key="DgSelectBrush" Color="{StaticResource DgSelectColor}"></SolidColorBrush>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="{StaticResource DgBgBrush}"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource DgBorderBrush}"></Setter>
+        <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource DgBorderBrush}"></Setter>
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent"></Setter>
+    </Style>
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="MinWidth" Value="60"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Border x:Name="BackgroundBorder" BorderThickness="0,0,1,1" BorderBrush="{StaticResource DgBorderBrush}" Width="Auto" Background="{DynamicResource C-BackgroundBrush}">
+                        <ContentPresenter  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="DataGridRow">
+        <Setter Property="Height" Value="36"></Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},Path=DataContext.IsChecked}" Value="True">
+                <Setter Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+            </Trigger>
+            <!--<MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"></Condition>
+                    <Condition Property="IsSelected" Value="False"></Condition>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+            </MultiTrigger>-->
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="DataGridCell">
+        <!--<Setter Property="Margin" Value="15,0"></Setter>-->
+        <Setter Property="MinWidth" Value="80"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource SecondFontBrush}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <Border VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"></Condition>
+                    <Condition Property="IsSelected" Value="False"></Condition>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--ListView-->
+    <Style TargetType="ListView">
+        <Setter Property="Background" Value="{StaticResource DgBgBrush}"></Setter>
+        <Setter Property="BorderBrush" Value="{StaticResource DgBorderBrush}"></Setter>
+    </Style>
+    <Style TargetType="GridViewColumnHeader">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="38"></Setter>
+        <Setter Property="MinWidth" Value="60"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="FontFamily" Value="{DynamicResource FontFamily}"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GridViewColumnHeader">
+                    <Border x:Name="BackgroundBorder" BorderThickness="1" BorderBrush="{StaticResource DgBorderBrush}" Width="Auto" Background="{DynamicResource C-BackgroundBrush}">
+                        <ContentPresenter  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="ListViewItem">
+        <Setter Property="Height" Value="36"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border x:Name="PART_Border" HorizontalAlignment="Center" BorderBrush="{StaticResource DgBorderBrush}" BorderThickness="1">
+                        <GridViewRowPresenter VerticalAlignment="Center" HorizontalAlignment="Center"></GridViewRowPresenter>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+                            <Setter Property="Foreground" Value="{DynamicResource FontBrush}"></Setter>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="True"></Condition>
+                                <Condition Property="IsSelected" Value="False"></Condition>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="PART_Border" Property="Background" Value="{StaticResource DgSelectBrush}"></Setter>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

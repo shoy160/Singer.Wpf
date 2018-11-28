@@ -1,0 +1,109 @@
+﻿<k:KWindow x:Class="ESignature.Client.Views.MainView"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:k="clr-namespace:Singer.Client.Controls;assembly=Singer.Client"
+           xmlns:cvt="clr-namespace:Singer.Client.Converter;assembly=Singer.Client"
+           Style="{StaticResource K-Window}" ShowHeader="False" Background="Transparent" Icon="../logo.ico"
+        mc:Ignorable="d" Title="{StaticResource L-AppName}" Height="730" Width="1024" k:AttachProperty.CornerRadius="6">
+    <Window.Resources>
+        <cvt:InternetStateConverter x:Key="InternetStateConverter" DefaultBrush="{StaticResource TipFontBrush}" UnConnectBrush="{StaticResource C-DangerBrush}" ConnectedBrush="{StaticResource PrimaryBrush}"></cvt:InternetStateConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="32"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="0" Grid.Column="0" Background="#FF313FA0" CornerRadius="6,0,0,0"></Border>
+        <Border Grid.RowSpan="2" Grid.Row="1" Grid.Column="0" Background="{StaticResource MenuBackgroupBrush}" CornerRadius="0,0,0,6"></Border>
+        <Border Grid.Row="0" Grid.Column="1" Background="{StaticResource PrimaryBrush}" CornerRadius="0,6,0,0"></Border>
+        <Rectangle Grid.Row="1" Grid.Column="1" Fill="White"></Rectangle>
+        <Border Grid.Row="2" Grid.Column="1" Background="#FFF9FDFF" BorderThickness="0,1,0,0" BorderBrush="{StaticResource C-BorderBrush}" CornerRadius="0,0,6,0"></Border>
+        <!--Logo-->
+        <WrapPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!--<Image Source="../logo.ico" Height="30" Width="30" Margin="0,0,20,0" ToolTip="{StaticResource L-AppName}"></Image>-->
+            <TextBlock Text="{StaticResource L-AppName}" Foreground="{StaticResource C-BackgroundBrush}" FontSize="24"></TextBlock>
+        </WrapPanel>
+        <Grid Grid.Row="0" Grid.Column="1" Margin="20,0,127,0">
+            <DockPanel VerticalAlignment="Center">
+                <WrapPanel VerticalAlignment="Center">
+                    <k:KButton Command="{Binding GoBackCommand}" Height="32" ToolTip="返回活动列表" FontSize="16" AllowsAnimation="False" 
+                               Icon="{StaticResource Icon-Back}" Style="{DynamicResource Btn-Link}" Foreground="#FFFEFEFE" HoverForeground="#FFFEFEFE"
+                               Visibility="{Binding IsGoback,Converter={x:Static k:DConverter.BooleanToVisibilityConverter}}"></k:KButton>
+                    <TextBlock Text="{Binding Activity.Meeting_Name}" ToolTip="{Binding Activity.Meeting_Name}" FontSize="16" Foreground="#FFFEFEFE" MaxWidth="520" TextTrimming="CharacterEllipsis" />
+                </WrapPanel>
+            </DockPanel>
+        </Grid>
+        <WrapPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="12,0">
+            <ContentControl Style="{StaticResource WindowBtns}" />
+        </WrapPanel>
+        <!--用户-->
+        <WrapPanel Grid.Row="1" Grid.Column="0" Height="100" VerticalAlignment="Top">
+            <Grid Margin="30,30,10,0">
+                <Ellipse Width="40" Height="40" MouseDown="UserAvatarClick" Cursor="Hand" x:Name="Avatar">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="../Contents/Images/21313-106.jpg"></ImageBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Ellipse Width="8" Height="8" Fill="#FF24FE8E" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,3,6"></Ellipse>
+            </Grid>
+            <StackPanel Margin="0,30,0,0">
+                <TextBlock HorizontalAlignment="Left" Text="{Binding User.Name}" Foreground="{StaticResource SecondFontBrush}" FontWeight="Bold" Margin="0,6,0,5"></TextBlock>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel x:Name="UserModal" Visibility="Collapsed" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"  Margin="15,80,0,0" ZIndex="10">
+            <Border MaxWidth="260" Margin="5" BorderThickness="1" BorderBrush="{StaticResource C-BorderBrush}" Background="{StaticResource C-BackgroundBrush}" CornerRadius="4">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" Opacity="0.4" Color="{StaticResource C-Border}" ShadowDepth="0" RenderingBias="Performance"></DropShadowEffect>
+                </Border.Effect>
+                <Grid Margin="17,20,17,10">
+                    <Path Data="M0,10 L10,0 L20,10" Fill="{StaticResource C-BackgroundBrush}" Stroke="{StaticResource C-BorderBrush}"
+                          Margin="0,-30,0,0"></Path>
+                    <StackPanel ZIndex="20">
+                        <StackPanel Visibility="{Binding IsSigner,Converter={x:Static k:DConverter.BooleanToVisibilityConverter},ConverterParameter=1}">
+                            <TextBlock Text="{Binding User.Name,StringFormat=姓　　名：{0}}" HorizontalAlignment="Left" Margin="0,0,0,20" 
+                                       Foreground="{StaticResource FontBrush}" FontSize="12"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Text="{Binding User.LoginDate,StringFormat=登录时间：{0:yyyy-MM-dd HH:mm:ss}}" HorizontalAlignment="Left" Margin="0,0,0,20" 
+                                   Foreground="{StaticResource FontBrush}" FontSize="12"></TextBlock>
+                        <k:KButton ToolTip="退出登录" Style="{StaticResource Btn-Link}" Content="退出登录" Height="30" Margin="0" Command="{Binding LogoutCommand}"
+                                   Visibility="{Binding IsOnline,Converter={x:Static k:DConverter.BooleanToVisibilityConverter}}"
+                                   HoverForeground="{StaticResource SecondaryBrush}"></k:KButton>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </WrapPanel>
+        <!--菜单-->
+        <WrapPanel Grid.Row="1" Grid.Column="0" Margin="0,100,0,40">
+            <ListView Style="{StaticResource K-Menu}" ItemContainerStyle="{StaticResource K-Menu-Item}" ItemsSource="{Binding Menus}" SelectedItem="{Binding SelectedItem}" 
+                      SelectionMode="Single"></ListView>
+        </WrapPanel>
+        <!--Pages-->
+        <DockPanel Grid.Row="1" Grid.Column="1" Margin="20,0,20,0" LastChildFill="True">
+            <Frame x:Name="PageContext" NavigationUIVisibility="Hidden" DockPanel.Dock="Right" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"></Frame>
+        </DockPanel>
+        <!--Footer-->
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25">
+            <TextBlock Text="{StaticResource L-Copyright}" FontSize="12" Foreground="#FF5B6773" FontFamily="微软雅黑" Margin="0,0,0,6"></TextBlock>
+            <TextBlock Text="{StaticResource L-ServiceTelephone}" FontSize="12" Foreground="#FF5B6773" FontFamily="微软雅黑" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource K-Icon}" Text="&#xe6f2;" Foreground="{Binding IsConnect,Converter={StaticResource InternetStateConverter}}" Margin="5,0"></TextBlock>
+            <TextBlock Text="{Binding ConnectionState}" Foreground="#FF414246" Margin="0,2"></TextBlock>
+        </WrapPanel>
+        <DockPanel Grid.Row="2" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" ToolTip="{Binding TooltipTime}"
+                       Text="{Binding TimeNow,StringFormat={}{0:yyyy/MM/dd HH:mm}}">
+            </TextBlock>
+        </DockPanel>
+    </Grid>
+</k:KWindow>
+
+
+

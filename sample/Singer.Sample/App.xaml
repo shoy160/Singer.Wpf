@@ -1,0 +1,13 @@
+﻿<k:DApplication x:Class="Singer.Sample.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:k="clr-namespace:Singer.Client;assembly=Singer.Client">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Singer.Sample;component/Resources/lang/zh_cn.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Singer.Client;component/Resources/Singer.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</k:DApplication>

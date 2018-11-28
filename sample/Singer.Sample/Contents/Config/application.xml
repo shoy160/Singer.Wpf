@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <rest_host>http://192.168.11.29:8086</rest_host>
+  <menus>
+    <item id="1" image="签到人员.png" url="TestPage.xaml" name="测试页" permissions="1" />
+    <item id="10" image="系统更新.png" url="SystemUpgrade.xaml" name="系统更新" permissions="1" />
+  </menus>
+</root>
