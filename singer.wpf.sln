@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singer.Client", "src\Singer.Client\Singer.Client.csproj", "{A34F141E-4BC2-4DF9-B5F8-557BE99DE69F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Solution Items", "01.Solution Items", "{CD1BCB8A-D81F-4F81-A176-9EEE93C3E1FC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\pack_abp.bat = .nuget\pack_abp.bat
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Core", "02.Core", "{4938F5B3-F1F0-437F-9847-6998A0B69F14}"
 EndProject

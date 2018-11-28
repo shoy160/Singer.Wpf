@@ -3,13 +3,17 @@ using System.Collections.Generic;
 
 namespace Singer.Core
 {
+    /// <summary> 通用结果类 </summary>
     [Serializable]
     public class DResult
     {
+        /// <summary> 状态 </summary>
         public bool Status { get; set; }
+        /// <summary> 错误码 </summary>
         public int Code { get; set; } = -1;
+        /// <summary> 错误消息 </summary>
         public string Message { get; set; }
-
+        /// <summary> 时间戳 </summary>
         public DateTime TimeStamp { get; set; }
 
         public DResult() { }

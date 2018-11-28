@@ -7,8 +7,17 @@
       mc:Ignorable="d" d:DesignHeight="625" d:DesignWidth="776" Background="White" Title="测试页">
 
     <Grid>
-        <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="52"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="测试页" Foreground="{StaticResource C-PrimaryBrush}" FontSize="26"></TextBlock>
         </Grid>
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <Border BorderThickness="1,0,1,1" BorderBrush="{DynamicResource DgBorderBrush}" Padding="0,5">
+                <k:DataPager Total="{Binding Total,Mode=OneWay}" PageSizes="15,30,50" x:Name="PageHelper"/>
+            </Border>
+        </StackPanel>
     </Grid>
 </k:KPage>

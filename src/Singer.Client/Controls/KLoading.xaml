@@ -11,7 +11,7 @@
     <Grid>
         <Border Background="{StaticResource WaitingBoxBackground}"  BorderBrush="#F8F8FF" BorderThickness="1" Opacity="12" CornerRadius="1" Effect="{StaticResource WindowDropShadow}"></Border>
         <DockPanel VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="5">
-            <k:AnimatedGIF x:Name="Gif" Source="/Contents/Images/loading.gif" GIFSource="Contents/Images/loading.gif" Height="35" Width="35"  Stretch="UniformToFill" Margin="5"/>
+            <k:AnimatedGIF x:Name="Gif" Source="/Singer.Client;component/Resources/Images/loading.gif" GIFSource="/Singer.Client;component/Resources/Images/loading.gif" Height="35" Width="35"  Stretch="UniformToFill" Margin="5"/>
             <TextBlock x:Name="TxtMessage" Margin="-30,10,15,10" Width="160" VerticalAlignment="Center" TextWrapping="Wrap">加载中...</TextBlock>
         </DockPanel>
     </Grid>

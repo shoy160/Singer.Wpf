@@ -8,6 +8,7 @@ using Singer.Core;
 
 namespace Singer.Client.Controls
 {
+    /// <summary> 分页组件 </summary>
     public partial class DataPager : INotifyPropertyChanged
     {
         public DataPager()
@@ -69,8 +70,8 @@ namespace Singer.Client.Controls
 
         public int PageIndex
         {
-            get { return (int)GetValue(PageIndexProperty); }
-            set { SetValue(PageIndexProperty, value); }
+            get => (int)GetValue(PageIndexProperty);
+            set => SetValue(PageIndexProperty, value);
         }
 
         public static readonly DependencyProperty PageSizeProperty = DependencyProperty.Register(

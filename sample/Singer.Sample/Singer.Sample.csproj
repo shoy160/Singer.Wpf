@@ -74,6 +74,7 @@
     <Compile Include="ViewModels\VLogin.cs" />
     <Compile Include="ViewModels\VMain.cs" />
     <Compile Include="ViewModels\VSystemUpgrade.cs" />
+    <Compile Include="ViewModels\VTestPage.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
