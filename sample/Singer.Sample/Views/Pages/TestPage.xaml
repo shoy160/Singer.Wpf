@@ -1,20 +1,34 @@
 ﻿<k:KPage x:Class="Singer.Sample.Views.Pages.TestPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:k="clr-namespace:Singer.Client.Controls;assembly=Singer.Client"
-      mc:Ignorable="d" d:DesignHeight="625" d:DesignWidth="776" Background="White" Title="测试页">
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:k="clr-namespace:Singer.Client.Controls;assembly=Singer.Client"
+         mc:Ignorable="d" d:DesignHeight="625" d:DesignWidth="776" Background="White" Title="测试页">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
             <RowDefinition Height="52"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Text="测试页" Foreground="{StaticResource C-PrimaryBrush}" FontSize="26"></TextBlock>
         </Grid>
-        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+        <WrapPanel Grid.Row="1" Margin="10,0" VerticalAlignment="Center">
+            <k:KButton Style="{StaticResource K-Btn}" Content="K-Btn" Width="120" Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Bg}" Content="Btn-Bg" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Primary}" Content="Btn-Primary" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Info}" Content="Btn-Info" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Success}" Content="Btn-Success" Width="120"  Margin="0,10,20,0"
+                       Command="{Binding DialogCommand}"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Warning}" Content="Btn-Warning" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Danger}" Content="Btn-Danger" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Link}" Content="Btn-Link" Width="120"  Margin="0,10,20,0"></k:KButton>
+            <k:KButton Style="{StaticResource Btn-Success}" Content="Loading" Width="120" Margin="0,10,20,0" Command="{Binding LoadingCommand}"></k:KButton>
+            <k:BulletCheckBox IsChecked="True" Off="关闭" On="开启" OnBackground="{StaticResource C-SuccessBrush}"></k:BulletCheckBox>
+        </WrapPanel>
+        <StackPanel Grid.Row="2" VerticalAlignment="Top">
             <Border BorderThickness="1,0,1,1" BorderBrush="{DynamicResource DgBorderBrush}" Padding="0,5">
                 <k:DataPager Total="{Binding Total,Mode=OneWay}" PageSizes="15,30,50" x:Name="PageHelper"/>
             </Border>

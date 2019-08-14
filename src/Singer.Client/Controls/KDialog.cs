@@ -7,7 +7,7 @@ namespace Singer.Client.Controls
 {
     public class KDialog : KWindow
     {
-        private bool _dialogResult;
+        private bool? _dialogResult;
         public KDialog() : base(true, "K-Dialog")
         {
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
@@ -15,11 +15,14 @@ namespace Singer.Client.Controls
             Messenger.Default.Register<bool>(this, result =>
             {
                 _dialogResult = result;
-                Close();
+                Dispatcher?.Invoke(new Action(Close));
             }, GlobalKeys.MtCloseDialog);
         }
 
-        public new bool? Show(Window owner = null)
+        /// <summary> 展示对话框 </summary>
+        /// <param name="owner"></param>
+        /// <returns></returns>
+        public bool? Show(Window owner = null)
         {
             try
             {
@@ -33,7 +36,6 @@ namespace Singer.Client.Controls
                 win.DialogCount++;
                 Owner = win;
                 win.ShowMask = true;
-
                 return ShowDialog();
             }
             catch
@@ -42,22 +44,24 @@ namespace Singer.Client.Controls
             }
         }
 
-        public static void CloseDialog(bool result = false)
+        /// <summary> 关闭对话框 </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result"></param>
+        public static void CloseDialog<T>(bool result = false) where T : KDialog
         {
-            Messenger.Default.Notify<bool, KDialog>(result, GlobalKeys.MtCloseDialog);
+            Messenger.Default.Notify<bool, T>(result, GlobalKeys.MtCloseDialog);
         }
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            if (IsActive)
+            if (_dialogResult.HasValue)
                 DialogResult = _dialogResult;
             base.OnClosing(e);
         }
 
         protected override void OnClosed(EventArgs e)
         {
-            var win = Owner as KWindow;
-            if (win != null)
+            if (Owner is KWindow win)
             {
                 win.DialogCount--;
                 if (win.DialogCount <= 0)

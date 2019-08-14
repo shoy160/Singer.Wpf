@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Singer.Client
 {
+    /// <summary> 控件扩展 </summary>
     public static class Extensions
     {
         /// <summary> 获取语言包文字 </summary>
@@ -19,6 +20,9 @@ namespace Singer.Client
             return Application.Current.FindResource(key)?.ToString();
         }
 
+        /// <summary> base64转ImageSource </summary>
+        /// <param name="base64"></param>
+        /// <returns></returns>
         public static BitmapImage BitmapImageFromBase64(this string base64)
         {
             try
@@ -41,6 +45,9 @@ namespace Singer.Client
             }
         }
 
+        /// <summary> Bitmap转ImageSource </summary>
+        /// <param name="bitmap"></param>
+        /// <returns></returns>
         public static BitmapImage BitmapToBitmapImage(this Image bitmap)
         {
             var bitmapImage = new BitmapImage();
@@ -56,6 +63,18 @@ namespace Singer.Client
             return bitmapImage;
         }
 
+        public static Bitmap ImageSourceToBitmap(this ImageSource imageSource)
+        {
+            using (var ms = new MemoryStream())
+            {
+                var encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create((BitmapSource)imageSource));
+                encoder.Save(ms);
+
+                return new Bitmap(ms);
+            }
+        }
+
         /// <summary> 通过类型获取子集控件 </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
@@ -68,8 +87,7 @@ namespace Singer.Client
             {
                 var child = VisualTreeHelper.GetChild(obj, i);
 
-                var ele = child as T;
-                if (ele != null && ele.GetType() == type)
+                if (child is T ele && ele.GetType() == type)
                 {
                     childList.Add(ele);
                 }
@@ -91,8 +109,7 @@ namespace Singer.Client
             {
                 var child = VisualTreeHelper.GetChild(obj, i);
 
-                var ele = child as T;
-                if (ele != null && (ele.Name == name || string.IsNullOrEmpty(name)))
+                if (child is T ele && (ele.Name == name || string.IsNullOrEmpty(name)))
                 {
                     childList.Add(ele);
                 }
@@ -112,8 +129,7 @@ namespace Singer.Client
             {
                 var child = VisualTreeHelper.GetChild(obj, i);
 
-                var ele = child as T;
-                if (ele != null && (ele.Name == name || string.IsNullOrEmpty(name)))
+                if (child is T ele && (ele.Name == name || string.IsNullOrEmpty(name)))
                 {
                     return ele;
                 }
@@ -135,8 +151,7 @@ namespace Singer.Client
             {
                 var child = VisualTreeHelper.GetChild(obj, i);
 
-                var ele = child as T;
-                if (ele != null && ele.GetType() == type)
+                if (child is T ele && ele.GetType() == type)
                 {
                     return ele;
                 }
@@ -147,14 +162,18 @@ namespace Singer.Client
             return null;
         }
 
+        /// <summary> 查找父级控件 </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static T FindParent<T>(this DependencyObject obj, string name) where T : FrameworkElement
         {
             var parent = VisualTreeHelper.GetParent(obj);
 
             while (parent != null)
             {
-                var ele = parent as T;
-                if (ele != null && (ele.Name == name || string.IsNullOrEmpty(name)))
+                if (parent is T ele && (ele.Name == name || string.IsNullOrEmpty(name)))
                 {
                     return ele;
                 }
@@ -165,14 +184,17 @@ namespace Singer.Client
             return null;
         }
 
+        /// <summary> 查找父级控件 </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static T FindParent<T>(this DependencyObject obj) where T : FrameworkElement
         {
             var parent = VisualTreeHelper.GetParent(obj);
             var type = typeof(T);
             while (parent != null)
             {
-                var ele = parent as T;
-                if (ele != null && ele.GetType() == type)
+                if (parent is T ele && ele.GetType() == type)
                 {
                     return ele;
                 }

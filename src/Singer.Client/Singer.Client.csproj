@@ -56,6 +56,8 @@
       <DependentUpon>DataPager.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\DConverter.cs" />
+    <Compile Include="Controls\GifAnimation.cs" />
+    <Compile Include="Controls\GifImage.cs" />
     <Compile Include="Controls\KButton.cs" />
     <Compile Include="Controls\KDialog.cs" />
     <Compile Include="Controls\KLoading.xaml.cs">
@@ -165,6 +167,19 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\loading_01.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\loading_02.gif" />
+    <Resource Include="Resources\Images\loading_03.gif" />
+    <Resource Include="Resources\Images\loading_04.gif" />
+    <Resource Include="Resources\Images\loading_07.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\loading_05.gif" />
+    <Resource Include="Resources\Images\loading_06.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,7 @@ using System.Windows.Controls;
 
 namespace Singer.Client.Rules
 {
+    /// <summary> 密码规则 </summary>
     public class PasswordRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)

@@ -77,8 +77,7 @@ namespace Singer.Core.Messaging
                 for (var i = 0; i < len; i++)
                 {
                     var key = _receiveActions.Keys.ToArray()[i];
-                    List<ActionAndToken> receiveActions;
-                    if (!_receiveActions.TryGetValue(key, out receiveActions))
+                    if (!_receiveActions.TryGetValue(key, out var receiveActions))
                         continue;
                     var actionLen = receiveActions.Count;
                     for (var j = 0; j < actionLen; j++)
@@ -113,8 +112,7 @@ namespace Singer.Core.Messaging
                 return;
             var messageType = typeof(TMessage);
             _receiveActions = _receiveActions ?? new ConcurrentDictionary<Type, List<ActionAndToken>>();
-            List<ActionAndToken> actions;
-            if (!_receiveActions.TryGetValue(messageType, out actions) || actions == null || !actions.Any())
+            if (!_receiveActions.TryGetValue(messageType, out var actions) || actions == null || !actions.Any())
                 return;
             var tokenActions =
                 actions.Where(

@@ -204,10 +204,10 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.ColumnSpan="2"  CornerRadius="4,4,0,0" Height="50" Background="#FFF9F9FF" BorderThickness="0,0,0,1" 
+                                <Border Grid.ColumnSpan="2" Opacity="{TemplateBinding HeaderBackgroundOpacity}" CornerRadius="4,4,0,0" Height="50" Background="{TemplateBinding HeaderBrush}" BorderThickness="0,0,0,1" 
                                         BorderBrush="{DynamicResource C-BorderBrush}" />
                                 <WrapPanel Grid.Column="0" VerticalAlignment="Center">
-                                    <TextBlock Text="{TemplateBinding Title}" FontSize="16" Margin="20,0" Foreground="{DynamicResource FontBrush}"></TextBlock>
+                                    <TextBlock Text="{TemplateBinding Title}" FontSize="16" Margin="20,0" Foreground="{TemplateBinding HeaderForegroundBrush}"></TextBlock>
                                 </WrapPanel>
                                 <WrapPanel Grid.Column="1" x:Name="PART_Btns" Margin="8,0" VerticalAlignment="Center">
                                     <k:KButton ToolTip="关闭" x:Name="PART_Close" Style="{StaticResource DialogCloseBtn}" 

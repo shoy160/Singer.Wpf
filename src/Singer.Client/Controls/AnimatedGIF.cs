@@ -37,8 +37,8 @@ namespace Singer.Client.Controls
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            this.Loaded += AnimatedGIF_Loaded;
-            this.Unloaded += AnimatedGIF_Unloaded;
+            Loaded += AnimatedGIF_Loaded;
+            Unloaded += AnimatedGIF_Unloaded;
         }
 
         void AnimatedGIF_Unloaded(object sender, RoutedEventArgs e)
@@ -72,7 +72,7 @@ namespace Singer.Client.Controls
         /// </summary>
         private void OnFrameChanged(object sender, EventArgs e)
         {
-            Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+            Dispatcher?.BeginInvoke(DispatcherPriority.Normal,
                                    new FrameUpdatedEventHandler(FrameUpdatedCallback));
         }
 
@@ -80,11 +80,10 @@ namespace Singer.Client.Controls
         {
             ImageAnimator.UpdateFrames();
 
-            if (BitmapSource != null)
-                BitmapSource.Freeze();
+            BitmapSource?.Freeze();
 
             // Convert the bitmap to BitmapSource that can be display in WPF Visual Tree
-            BitmapSource = GetBitmapSource(this.Bitmap, this.BitmapSource);
+            BitmapSource = GetBitmapSource(Bitmap, BitmapSource);
             Source = BitmapSource;
             InvalidateVisual();
         }
@@ -99,10 +98,14 @@ namespace Singer.Client.Controls
             if (!gif.IsLoaded) return;
             BindSource(gif);
         }
+
         private static void BindSource(AnimatedGIF gif)
         {
             gif.StopAnimate();
-            if (gif.Bitmap != null) gif.Bitmap.Dispose();
+            gif.Bitmap?.Dispose();
+            //if (gif.GIFSource == null)
+            //    return;
+            //gif.Bitmap = gif.GIFSource.ImageSourceToBitmap();
             var path = gif.GIFSource;
             if (string.IsNullOrWhiteSpace(path))
                 return;
@@ -110,20 +113,33 @@ namespace Singer.Client.Controls
             {
                 path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
             }
-            if (!File.Exists(path)) return;
-            gif.Bitmap = new Bitmap(path);
+
+            if (!File.Exists(path))
+            {
+                var uri = new Uri($"pack://application:,,,{path}");
+                var info = Application.GetContentStream(uri) ?? Application.GetResourceStream(uri);
+                if (info == null)
+                {
+                    return;
+                }
+                gif.Bitmap = new Bitmap(info.Stream);
+            }
+            else
+            {
+                gif.Bitmap = new Bitmap(path);
+            }
+
             gif.BitmapSource = GetBitmapSource(gif.Bitmap, gif.BitmapSource);
             gif.StartAnimate();
         }
 
-        private static BitmapSource GetBitmapSource(Bitmap bmap, BitmapSource bimg)
+        private static BitmapSource GetBitmapSource(Bitmap bmap, BitmapSource bmpSource)
         {
-            IntPtr handle = IntPtr.Zero;
-
+            var handle = IntPtr.Zero;
             try
             {
                 handle = bmap.GetHbitmap();
-                bimg = Imaging.CreateBitmapSourceFromHBitmap(
+                bmpSource = Imaging.CreateBitmapSourceFromHBitmap(
                     handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             }
             finally
@@ -132,7 +148,7 @@ namespace Singer.Client.Controls
                     DeleteObject(handle);
             }
 
-            return bimg;
+            return bmpSource;
         }
     }
 }

@@ -31,9 +31,11 @@ namespace Singer.Client
                 MessengerInstance = messenger;
         }
 
+        /// <summary> 更新UI </summary>
+        /// <param name="action"></param>
         public void UiInvoke(Action action)
         {
-            Element.Dispatcher.Invoke(action);
+            Element?.Dispatcher?.Invoke(action);
         }
 
         protected void ShowDialog<TD>()
@@ -42,10 +44,12 @@ namespace Singer.Client
             new TD().Show();
         }
 
-        public virtual void Binded()
+        /// <summary> 绑定控件 </summary>
+        public virtual void OnBinded()
         {
         }
 
+        /// <summary> 清理 </summary>
         public virtual void Cleanup()
         {
             MessengerInstance.Unregister(this);

@@ -1,4 +1,4 @@
-﻿<k:KWindow x:Class="ESignature.Client.Views.MainView"
+﻿<k:KWindow x:Class="Singer.Sample.Views.MainView"
            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

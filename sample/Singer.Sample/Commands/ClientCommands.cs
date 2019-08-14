@@ -1,16 +1,16 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Threading;
-using ESignature.Business;
-using ESignature.Client.Views;
+﻿using ESignature.Business;
 using Singer.Client.Commands;
 using Singer.Client.Controls;
 using Singer.Core.Helper;
 using Singer.Sample.AppService;
 using Singer.Sample.Helper;
 using Singer.Sample.ViewModels;
+using Singer.Sample.Views;
 using Singer.Update;
+using System;
+using System.Diagnostics;
+using System.Windows;
+using System.Windows.Threading;
 
 namespace Singer.Sample.Commands
 {

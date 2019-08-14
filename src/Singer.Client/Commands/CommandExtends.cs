@@ -21,7 +21,7 @@ namespace Singer.Client.Commands
         {
             model.Element = element;
             element.DataContext = model;
-            model.Binded();
+            model.OnBinded();
         }
     }
 }

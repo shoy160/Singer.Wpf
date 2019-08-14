@@ -75,6 +75,9 @@
     <Compile Include="ViewModels\VMain.cs" />
     <Compile Include="ViewModels\VSystemUpgrade.cs" />
     <Compile Include="ViewModels\VTestPage.cs" />
+    <Compile Include="Views\Dialogs\DemoDialog.xaml.cs">
+      <DependentUpon>DemoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Dialogs\DemoDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

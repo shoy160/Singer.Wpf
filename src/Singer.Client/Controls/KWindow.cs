@@ -39,6 +39,18 @@ namespace Singer.Client.Controls
             set { SetValue(HeaderBrushProperty, value); }
         }
 
+        public static readonly DependencyProperty HeaderForegroundBrushProperty = DependencyProperty.Register(
+            "HeaderForegroundBrush", typeof(Brush), typeof(KWindow), new PropertyMetadata(Brushes.Black));
+
+        /// <summary>
+        /// 头 字体颜色
+        /// </summary>
+        public Brush HeaderForegroundBrush
+        {
+            get { return (Brush)GetValue(HeaderForegroundBrushProperty); }
+            set { SetValue(HeaderForegroundBrushProperty, value); }
+        }
+
         public static readonly DependencyProperty ShowHeaderProperty = DependencyProperty.Register(
             "ShowHeader", typeof(bool), typeof(KWindow), new PropertyMetadata(true));
 
@@ -49,7 +61,7 @@ namespace Singer.Client.Controls
         }
 
         public static readonly DependencyProperty HeaderBackgroundOpacityProperty = DependencyProperty.Register(
-            "HeaderBackgroundOpacity", typeof(double), typeof(KWindow), new PropertyMetadata(0.3));
+            "HeaderBackgroundOpacity", typeof(double), typeof(KWindow), new PropertyMetadata(0.3D));
 
         public double HeaderBackgroundOpacity
         {
@@ -85,18 +97,16 @@ namespace Singer.Client.Controls
         private readonly bool _dragable;
 
         private readonly string _defaultStyle;
+
+        /// <summary> 弹窗数量 </summary>
         public int DialogCount { get; set; }
 
-        static KWindow()
-        {
-        }
-
-        public KWindow()
-            : this(true, "K-Window")
-        {
-        }
-
-        public KWindow(bool dragable, string style, bool hook = true)
+        /// <summary> 构造函数 </summary>
+        /// <param name="dragable">是否可拖动</param>
+        /// <param name="style">样式</param>
+        /// <param name="hook"></param>
+        /// <param name="enableShortKey">启用快捷键</param>
+        public KWindow(bool dragable = true, string style = "K-Window", bool hook = true, bool enableShortKey = true)
         {
             _dragable = dragable;
             _defaultStyle = style;
@@ -113,6 +123,7 @@ namespace Singer.Client.Controls
             });
             var mg = Margin;
             var corner = AttachProperty.GetCornerRadius(this);
+
             this.BindCommand(SystemCommands.MaximizeWindowCommand, (s, e) =>
             {
                 if (WindowState == WindowState.Maximized)
@@ -137,24 +148,28 @@ namespace Singer.Client.Controls
             {
             };
 
-            //exc退出全屏
-            KeyUp += (s, e) =>
+            if (enableShortKey)
             {
-                if (WindowState == WindowState.Maximized && e.Key == Key.F11)
+                //exc退出全屏
+                KeyUp += (s, e) =>
                 {
-                    SystemCommands.RestoreWindow(this);
-                    Margin = mg;
-                    AttachProperty.SetCornerRadius(this, corner);
-                    WindowState = WindowState.Normal;
-                }
-                else if (WindowState == WindowState.Normal && e.Key == Key.F11)
-                {
-                    SystemCommands.MaximizeWindow(this);
-                    Margin = new Thickness(0);
-                    AttachProperty.SetCornerRadius(this, new CornerRadius(0));
-                    WindowState = WindowState.Maximized;
-                }
-            };
+                    if (WindowState == WindowState.Maximized && (e.Key == Key.F11 || e.Key == Key.Escape))
+                    {
+                        SystemCommands.RestoreWindow(this);
+                        Margin = mg;
+                        AttachProperty.SetCornerRadius(this, corner);
+                        WindowState = WindowState.Normal;
+                    }
+                    else if (WindowState == WindowState.Normal && e.Key == Key.F11)
+                    {
+                        SystemCommands.MaximizeWindow(this);
+                        Margin = new Thickness(0);
+                        AttachProperty.SetCornerRadius(this, new CornerRadius(0));
+                        WindowState = WindowState.Maximized;
+                    }
+                };
+            }
+
             Unloaded += (sender, args) =>
             {
                 (DataContext as DViewModel)?.Cleanup();

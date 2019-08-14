@@ -10,7 +10,7 @@ namespace Singer.Core
     public static class Constants
     {
         /// <summary> 版本号 </summary>
-        public const string Version = "1.0.5";
+        public const string Version = "1.0.9";
         internal const string DateFormatString = "yyyy-MM-dd HH:mm:ss";
 
         internal static readonly Dictionary<string, string> ContentTypes = new Dictionary<string, string>

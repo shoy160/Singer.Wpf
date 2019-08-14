@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 namespace Singer.Client.Rules
 {
+    /// <summary> 手机规则 </summary>
     public class MobileRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)

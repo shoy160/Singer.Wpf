@@ -18,8 +18,11 @@ namespace Singer.Client
         [DllImport("user32")]
         private static extern int SetForegroundWindow(IntPtr hwnd);
 
-        public string CallExeName => Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location);
+        /// <summary> 执行文件名 </summary>
+        public string CallExeName => Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.Location);
 
+        /// <summary> 启动 </summary>
+        /// <returns></returns>
         protected bool Boostrap()
         {
             var currentProcess = Process.GetCurrentProcess();

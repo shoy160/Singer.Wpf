@@ -4,7 +4,7 @@ using Singer.Client.Commands;
 using Singer.Sample.Commands;
 using Singer.Sample.ViewModels;
 
-namespace ESignature.Client.Views
+namespace Singer.Sample.Views
 {
     /// <summary>
     /// MainView.xaml 的交互逻辑
