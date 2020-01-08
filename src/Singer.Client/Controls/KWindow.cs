@@ -101,6 +101,8 @@ namespace Singer.Client.Controls
         /// <summary> 弹窗数量 </summary>
         public int DialogCount { get; set; }
 
+        protected DViewModel<FrameworkElement> Model { get; private set; }
+
         /// <summary> 构造函数 </summary>
         /// <param name="dragable">是否可拖动</param>
         /// <param name="style">样式</param>
@@ -146,6 +148,7 @@ namespace Singer.Client.Controls
             //窗体加载完成事件
             Loaded += (sender, args) =>
             {
+                Model = Model ?? DataContext as DViewModel<FrameworkElement>;
             };
 
             if (enableShortKey)
@@ -172,8 +175,9 @@ namespace Singer.Client.Controls
 
             Unloaded += (sender, args) =>
             {
-                (DataContext as DViewModel)?.Cleanup();
+                Model?.Cleanup();
             };
+
             //资源初始化事件
             SourceInitialized += (sender, args) =>
             {

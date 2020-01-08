@@ -24,7 +24,7 @@ namespace Singer.Sample.Views.Dialogs
                     {
                         Thread.Sleep(3000);
                     }, owner: Element as DemoDialog);
-                    KDialog.CloseDialog<DemoDialog>(true);
+                    CloseDialog<KDialog>(true);
                 });
             }
         }

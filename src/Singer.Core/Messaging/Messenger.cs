@@ -9,7 +9,13 @@ namespace Singer.Core.Messaging
     public class Messenger : IMessenger
     {
         private ConcurrentDictionary<Type, List<ActionAndToken>> _receiveActions;
-        private readonly object _registerLock = new object();
+        private static readonly object RegisterLock = new object();
+
+        private Messenger()
+        {
+            _receiveActions = new ConcurrentDictionary<Type, List<ActionAndToken>>();
+        }
+
         /// <summary> 默认的消息管理器 </summary>
         public static Messenger Default => Singleton<Messenger>.Instance ??
                                            (Singleton<Messenger>.Instance = new Messenger());
@@ -71,7 +77,7 @@ namespace Singer.Core.Messaging
         {
             if (receiver == null || _receiveActions == null)
                 return;
-            lock (_registerLock)
+            lock (RegisterLock)
             {
                 var len = _receiveActions.Keys.Count;
                 for (var i = 0; i < len; i++)
@@ -118,8 +124,8 @@ namespace Singer.Core.Messaging
                 actions.Where(
                     t => t.Token == null && token == null || t.Token != null && t.Token.Equals(token));
             if (messageTargetType != null)
-                tokenActions = tokenActions.Where(t => t.TargetType == messageTargetType ||
-                                                       t.TargetType.IsSubclassOf(messageTargetType));
+                tokenActions = tokenActions.Where(t =>
+                    t.TargetType == messageTargetType || messageTargetType.IsAssignableFrom(t.TargetType));
             var actionList = tokenActions.ToList();
             foreach (var action in actionList)
             {

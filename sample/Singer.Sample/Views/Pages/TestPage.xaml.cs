@@ -8,7 +8,7 @@ namespace Singer.Sample.Views.Pages
     /// </summary>
     public partial class TestPage
     {
-        public TestPage()
+        public TestPage() : base(new VTestPage())
         {
             InitializeComponent();
             new VTestPage().Bind(this);

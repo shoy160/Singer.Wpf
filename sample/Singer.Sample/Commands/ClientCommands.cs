@@ -55,7 +55,7 @@ namespace Singer.Sample.Commands
                     Updater.Instance.StartUpdate(dto.DownloadUrl, dto.Version, dto.UpgradeInstructions, dto.Md5);
                     if (dto.Mandatory)
                     {
-                        Application.Current.Dispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
+                        Application.Current.Dispatcher?.BeginInvokeShutdown(DispatcherPriority.Normal);
                     }
                 }
                 catch (Exception ex)
